@@ -173,6 +173,7 @@ sudo service moonraker start
 # MAINSAIL/FLUIDD
 ################################################################################
 
+sudo mkdir -p /etc/caddy
 # To reformat the Caddyfile: sudo caddy fmt --overwrite /etc/caddy/Caddyfile
 
 sudo tee /etc/caddy/Caddyfile <<EOF
