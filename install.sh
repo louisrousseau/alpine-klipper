@@ -36,6 +36,10 @@ python3 py3-virtualenv \
 python3-dev freetype-dev fribidi-dev harfbuzz-dev jpeg-dev lcms2-dev openjpeg-dev tcl-dev tiff-dev tk-dev zlib-dev \
 jq patch libsodium caddy caddy-openrc curl polkit grep iproute2
 
+# Create service account for caddy
+sudo addgroup -S caddy 2>/dev/null || true
+sudo adduser -S -G caddy -H -s /sbin/nologin caddy 2>/dev/null || true
+
 case $CLIENT in
   fluidd)
     CLIENT_RELEASE_URL=`curl -Ls https://api.github.com/repos/fluidd-core/fluidd/releases | jq -r ".[0].assets[0].browser_download_url"`
