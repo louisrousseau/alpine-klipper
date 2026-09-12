@@ -39,10 +39,10 @@ fi
 
 case $CLIENT in
   fluidd)
-    CLIENT_RELEASE_URL=`curl -Ls https://api.github.com/repos/cadriel/fluidd/releases | jq -r ".[0].assets[0].browser_download_url"`
+    CLIENT_RELEASE_URL=`curl -Ls https://api.github.com/repos/fluidd-core/fluidd/releases | jq -r ".[0].assets[0].browser_download_url"`
     ;;
   mainsail)
-    CLIENT_RELEASE_URL=`curl -Ls https://api.github.com/repos/meteyou/mainsail/releases | jq -r ".[0].assets[0].browser_download_url"`
+    CLIENT_RELEASE_URL=`curl -Ls https://api.github.com/repos/mainsail-crew/mainsail/releases | jq -r ".[0].assets[0].browser_download_url"`
     ;;
   *)
     echo "Unknown client $CLIENT (choose fluidd or mainsail)"
@@ -233,10 +233,10 @@ set -exo pipefail
 
 case \$CLIENT in
   fluidd)
-    CLIENT_RELEASE_URL=`curl -Ls https://api.github.com/repos/cadriel/fluidd/releases | jq -r ".[0].assets[0].browser_download_url"`
+    CLIENT_RELEASE_URL=`curl -Ls https://api.github.com/repos/fluidd-core/fluidd/releases | jq -r ".[0].assets[0].browser_download_url"`
     ;;
   mainsail)
-    CLIENT_RELEASE_URL=`curl -Ls https://api.github.com/repos/meteyou/mainsail/releases | jq -r ".[0].assets[0].browser_download_url"`
+    CLIENT_RELEASE_URL=`curl -Ls https://api.github.com/repos/mainsail-crew/mainsail/releases | jq -r ".[0].assets[0].browser_download_url"`
     ;;
   *)
     echo "Unknown client \$CLIENT (choose fluidd or mainsail)"
@@ -254,7 +254,7 @@ sudo service klipper start
 # MOONRAKER
 sudo service moonraker stop
 (cd $MOONRAKER_PATH && git fetch && git rebase origin/master)
-$MOONRAKER_VENV_PATH/bin/pip install -r ~/moonraker/scripts/moonraker-requirements.txt
+$MOONRAKER_VENV_PATH/bin/pip install -r $MOONRAKER_PATH/scripts/moonraker-requirements.txt
 sudo service moonraker start
 
 # CLIENT
