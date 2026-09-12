@@ -223,7 +223,7 @@ sudo rc-update add crond
 
 # UPDATE SCRIPT
 
-cat > $HOME/update <<EOF
+cat > $HOME/update <<'EOF'
 #!/usr/bin/env bash
 
 set -exo pipefail
