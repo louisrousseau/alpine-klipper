@@ -9,7 +9,7 @@ set -euxo pipefail
 : ${LOG_PATH:="$DATA_PATH/logs"}
 : ${COMMS_PATH:="$DATA_PATH/comms"}
 
-: ${KLIPPER_REPO:="https://github.com/gbkwiatt/klipper.git"}
+: ${KLIPPER_REPO:="https://github.com/Klipper3d/klipper.git"}
 : ${KLIPPER_PATH:="$HOME/klipper"}
 : ${KLIPPY_VENV_PATH:="$HOME/venv/klippy"}
 
