@@ -91,8 +91,8 @@ $MOONRAKER_VENV_PATH/bin/pip install -r $MOONRAKER_PATH/scripts/moonraker-requir
 
 sudo tee /etc/init.d/moonraker <<EOF
 #!/sbin/openrc-run
-command="$MOONRAKER_VENV_PATH/bin/python"
-command_args="$MOONRAKER_PATH/moonraker/moonraker.py"
+command="${MOONRAKER_VENV_PATH}/bin/python"
+command_args="${MOONRAKER_PATH}/moonraker/moonraker.py -d ${DATA_PATH}"
 command_background=true
 command_user="$USER"
 pidfile="/run/moonraker.pid"
