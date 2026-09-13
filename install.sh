@@ -211,6 +211,10 @@ mkdir -p $CLIENT_PATH
 sudo rc-update add caddy
 sudo service caddy start
 
+sudo nft add rule inet filter input tcp dport 80 accept comment '"Allow Caddy Web (Mainsail/Fluidd)"'
+sudo nft add rule inet filter input tcp dport 7125 accept comment '"Allow Moonraker API"'
+sudo rc-service nftables save
+
 ################################################################################
 # AUTO DELETE OLD GCODE
 ################################################################################
