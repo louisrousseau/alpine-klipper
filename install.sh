@@ -34,7 +34,7 @@ sudo apk add git unzip libffi-dev make gcc g++ \
 ncurses-dev avrdude gcc-avr binutils-avr avr-libc \
 python3 py3-virtualenv \
 python3-dev freetype-dev fribidi-dev harfbuzz-dev jpeg-dev lcms2-dev openjpeg-dev tcl-dev tiff-dev tk-dev zlib-dev \
-jq patch libsodium caddy caddy-openrc curl polkit grep iproute2
+jq patch libsodium libsodium-dev caddy caddy-openrc curl polkit grep iproute2
 
 # Create service account for caddy
 sudo addgroup -S caddy 2>/dev/null || true
