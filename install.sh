@@ -72,13 +72,13 @@ $KLIPPY_VENV_PATH/bin/pip install -r $KLIPPER_PATH/scripts/klippy-requirements.t
 
 sudo tee /etc/init.d/klipper <<EOF
 #!/sbin/openrc-run
-command="$KLIPPY_VENV_PATH/bin/python"
-command_args="$KLIPPER_PATH/klippy/klippy.py $CONFIG_PATH/printer.cfg -l $LOG_PATH/klippy.log -a $COMMS_PATH/klippy.sock"
+command="${KLIPPY_VENV_PATH}/bin/python"
+command_args="${KLIPPER_PATH}/klippy/klippy.py ${CONFIG_PATH}/printer.cfg -l ${LOG_PATH}/klippy.log -a ${COMMS_PATH}/klippy.sock"
 command_background=true
-command_user="$USER"
+command_user="${USER}"
 pidfile="/run/klipper/klipper.pid"
 start_pre() {
-    checkpath -d -m 0755 -o "$USER":"$USER" /run/klipper
+    checkpath -d -m 0755 -o "${USER}":"${USER}" /run/klipper
 }
 EOF
 
@@ -107,20 +107,20 @@ depend() {
   before klipper
 }
 start_pre() {
-    checkpath -d -m 0755 -o "$USER":"$USER" /run/moonraker
+    checkpath -d -m 0755 -o "${USER}":"${USER}" /run/moonraker
 }
 EOF
 
 sudo chmod a+x /etc/init.d/moonraker
 
-cat > $CONFIG_PATH/moonraker.conf <<EOF
+cat > ${CONFIG_PATH}/moonraker.conf <<EOF
 [server]
 host: 0.0.0.0
 port: 7125
 # The maximum size allowed for a file upload (in MiB).  Default 1024 MiB
 max_upload_size: 1024
 # Path to klippy Unix Domain Socket
-klippy_uds_address: $COMMS_PATH/klippy.sock
+klippy_uds_address: ${COMMS_PATH}/klippy.sock
 
 [machine]
 # There are no OpenRC-compatible options at the moment
@@ -202,7 +202,7 @@ sudo tee /etc/caddy/Caddyfile <<EOF
 
 encode gzip
 
-root * $CLIENT_PATH
+root * ${CLIENT_PATH}
 
 @moonraker {
   path /server/* /websocket /printer/* /access/* /api/* /machine/*
@@ -222,9 +222,9 @@ route {
 }
 EOF
 
-test -d $CLIENT_PATH && rm -rf $CLIENT_PATH
-mkdir -p $CLIENT_PATH
-(cd $CLIENT_PATH && wget -q -O $CLIENT.zip $CLIENT_RELEASE_URL && unzip $CLIENT.zip && rm $CLIENT.zip)
+test -d ${CLIENT_PATH} && rm -rf ${CLIENT_PATH}
+mkdir -p ${CLIENT_PATH}
+(cd ${CLIENT_PATH} && wget -q -O ${CLIENT}.zip ${CLIENT_RELEASE_URL} && unzip ${CLIENT}.zip && rm ${CLIENT}.zip)
 
 sudo rc-update add caddy
 sudo service caddy start
@@ -248,7 +248,7 @@ sudo rc-service nftables reload
 
 sudo tee /etc/periodic/15min/klipper <<END
 #!/bin/sh
-find $GCODE_PATH -mtime +5 -type f -delete
+find ${GCODE_PATH} -mtime +5 -type f -delete
 END
 
 sudo chmod a+x /etc/periodic/15min/klipper
@@ -258,7 +258,7 @@ sudo rc-update add crond
 
 # UPDATE SCRIPT
 
-cat > $HOME/update <<'EOF'
+cat > ${HOME}/update <<'EOF'
 #!/usr/bin/env bash
 
 set -exo pipefail
@@ -299,4 +299,4 @@ mkdir -p \$CLIENT_PATH
 sudo service caddy start
 EOF
 
-chmod a+x $HOME/update
+chmod a+x ${HOME}/update
