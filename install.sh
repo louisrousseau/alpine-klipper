@@ -163,10 +163,10 @@ channel: stable
 repo: mainsail-crew/mainsail
 path: ~/mainsail
 
-[update_manager fluidd]
-type: web
-repo: cadriel/fluidd
-path: ~/fluidd
+#[update_manager fluidd]
+#type: web
+#repo: fluidd-core/fluidd
+#path: ~/fluidd
 EOF
 
 sudo rc-update add moonraker
