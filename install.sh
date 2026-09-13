@@ -127,10 +127,14 @@ enable_object_processing: False
 
 [authorization]
 cors_domains:
+    *.lan
+    *.local
+    *.home.arpa
+    *.home.arpa:*
+    *://localhost
+    *://localhost:*
     *://my.mainsail.xyz
-    *://*.home.arpa
-    *://*.local
-    *://*.lan
+    *://app.fluidd.xyz
 trusted_clients:
     10.0.0.0/8
     127.0.0.0/8
