@@ -100,6 +100,7 @@ command_background=true
 command_user="$USER"
 pidfile="/run/moonraker.pid"
 depend() {
+  need loopback net
   before klipper
 }
 EOF
@@ -174,8 +175,14 @@ sudo rc-update add moonraker
 sudo service moonraker start
 
 ################################################################################
-# MAINSAIL/FLUIDD
+# CADDY
 ################################################################################
+
+sudo mkdir -p /etc/conf.d
+sudo tee /etc/conf.d/caddy <<EOF
+# Make Caddy wait for Moonraker init
+rc_need="moonraker"
+EOF
 
 sudo mkdir -p /etc/caddy
 # To reformat the Caddyfile: sudo caddy fmt --overwrite /etc/caddy/Caddyfile
