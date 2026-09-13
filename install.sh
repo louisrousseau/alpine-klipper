@@ -152,6 +152,7 @@ subscriptions:
 
 # this enables moonraker's update manager
 [update_manager]
+channel: dev
 refresh_interval: 168
 enable_auto_refresh: True
 # System packages updates are only possible with apt
