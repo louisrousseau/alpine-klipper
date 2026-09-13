@@ -76,7 +76,10 @@ command="$KLIPPY_VENV_PATH/bin/python"
 command_args="$KLIPPER_PATH/klippy/klippy.py $CONFIG_PATH/printer.cfg -l $LOG_PATH/klippy.log -a $COMMS_PATH/klippy.sock"
 command_background=true
 command_user="$USER"
-pidfile="/run/klipper.pid"
+pidfile="/run/klipper/klipper.pid"
+start_pre() {
+    checkpath -d -m 0755 -o "$USER":"$USER" /run/klipper
+}
 EOF
 
 sudo chmod +x /etc/init.d/klipper
@@ -98,10 +101,13 @@ command="${MOONRAKER_VENV_PATH}/bin/python"
 command_args="${MOONRAKER_PATH}/moonraker/moonraker.py -d ${DATA_PATH}"
 command_background=true
 command_user="$USER"
-pidfile="/run/moonraker.pid"
+pidfile="/run/moonraker/moonraker.pid"
 depend() {
   need loopback net
   before klipper
+}
+start_pre() {
+    checkpath -d -m 0755 -o "$USER":"$USER" /run/moonraker
 }
 EOF
 
